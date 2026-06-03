@@ -1,0 +1,17 @@
+# Python build/runtime artifacts
+__pycache__/
+*.pyc
+*.pyo
+build/
+*.so
+
+# Fortran build artifacts
+Release/
+Releaselib/
+*.o
+*.d
+*.mod
+*.a
+
+# OS cruft
+.DS_Store
