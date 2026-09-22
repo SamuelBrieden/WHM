@@ -24,6 +24,7 @@ halofit_brieden2023 = 'brieden2023'
 halofit_brieden2023_feedback = 'brieden2023_feedback'
 halofit_brieden2023_cross = 'brieden2023_cross'
 halofit_brieden2023_tweaked = 'brieden2023_tweaked'
+halofit_brieden2023_tweaked_thinweb = 'brieden2023_tweaked_thinweb'
 halofit_brieden2023_cross_tweaked = 'brieden2023_cross_tweaked'
 halofit_halomodel_tweaked = 'halomodel_tweaked'
 halofit_brieden2023_halo = 'brieden2023_halo'
@@ -41,8 +42,8 @@ halofit_brieden2023_sheetcross = 'brieden2023_sheetcross'
 halofit_brieden2023_halospherecross = 'brieden2023_halospherecross'
 halofit_brieden2023_filaspherecross = 'brieden2023_filaspherecross'
 halofit_brieden2023_sheetspherecross = 'brieden2023_sheetspherecross'
-halofit_brieden2023_cross_profilecusp = 'brieden2023_cross_profilecored'
-halofit_brieden2023_cross_profileconc = 'brieden2023_cross_profilecusp'
+halofit_brieden2023_cross_profilecusp = 'brieden2023_cross_profilecusp'
+halofit_brieden2023_cross_profileconc = 'brieden2023_cross_profileconc'
 halofit_brieden2023_cross_nobias = 'brieden2023_cross_nobias'
 halofit_brieden2023_cross_nohalobias = 'brieden2023_cross_nohalobias'
 halofit_brieden2023_cross_tinkerhalobias = 'brieden2023_cross_tinkerhalobias'
@@ -90,6 +91,7 @@ halofit_version_names = {halofit_original: 1,
                          halofit_brieden2023_cross_tinkerhalobias: 36,
                          halofit_brieden2023_cross_fnumasscutlow: 37,
                          halofit_brieden2023_cross_fnumasscuthigh: 38,
+                         halofit_brieden2023_tweaked_thinweb: 39,
                          
                         }
 

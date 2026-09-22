@@ -89,6 +89,7 @@
     integer, parameter :: halofit_brieden2023_cross_tinkerhalobias=36
     integer, parameter :: halofit_brieden2023_cross_fnumasscutlow=37
     integer, parameter :: halofit_brieden2023_cross_fnumasscuthigh=38
+    integer, parameter :: halofit_brieden2023_tweaked_thinweb=39 !SB - brieden2023_tweaked with 'thin web' sheet/filament profiles (ivar_profile=3)
     integer, parameter :: halofit_mead=halofit_mead2016 ! AM Kept for backwards compatability
     integer, parameter :: halofit_default=halofit_mead2020
     
@@ -104,7 +105,7 @@
         !!AM - Added these types for HMcode
         integer, private :: imead !!AM - added these for HMcode, need to be visible to all subroutines and functions
         integer, private :: ibrieden !!SB - added to distinguish between halos, filaments, sheets 
-        integer, private :: ivar_profile !!SB - added to compare a suit of window profile choices
+        integer, private :: ivar_profile !!SB - sheet/filament density profile: 0=constant density (default), 1=infinitely thin line/disk, 2=NFW sphere with r_s=R, 3='thin web' (thin limit x NFW window of the halo with the same mass; concentration dependent)
         integer, private :: ivar_bias !!SB - added to compare a suit of bias function choices
         integer, private :: ivar_fnu !!SB - added to compare a suit of mass function choices
         real(dl), private :: om_m,om_v,fnu,omm0, acur, w_hf, wa_hf
@@ -143,6 +144,7 @@
     public halofit_brieden2023_halo, halofit_brieden2023_fila, halofit_brieden2023_sheet, halofit_brieden2023_halosphere, halofit_brieden2023_filasphere, halofit_brieden2023_sheetsphere, halofit_brieden2023_halominussphere, halofit_brieden2023_filaminussphere, halofit_brieden2023_sheetminussphere
     public halofit_brieden2023_halocross, halofit_brieden2023_filacross, halofit_brieden2023_sheetcross, halofit_brieden2023_halospherecross, halofit_brieden2023_filaspherecross, halofit_brieden2023_sheetspherecross
     public halofit_brieden2023_cross_profilecusp, halofit_brieden2023_cross_profileconc, halofit_brieden2023_cross_nobias, halofit_brieden2023_cross_nohalobias, halofit_brieden2023_cross_tinkerhalobias, halofit_brieden2023_cross_fnumasscutlow, halofit_brieden2023_cross_fnumasscuthigh
+    public halofit_brieden2023_tweaked_thinweb
 
     TYPE HM_cosmology
         !Contains only things that do not need to be recalculated with each new z
@@ -303,6 +305,7 @@
     END IF
     IF(this%halofit_version == halofit_brieden2023 .OR. & 
         this%halofit_version == halofit_brieden2023_tweaked .OR. & 
+        this%halofit_version == halofit_brieden2023_tweaked_thinweb .OR. &
         this%halofit_version == halofit_brieden2023_halominussphere .OR. &
         this%halofit_version == halofit_brieden2023_filaminussphere .OR. &
         this%halofit_version == halofit_brieden2023_sheetminussphere .OR. &
@@ -340,6 +343,7 @@
                 this%halofit_version==halofit_brieden2023_feedback .OR. &
                 this%halofit_version==halofit_brieden2023_cross .OR. &
                 this%halofit_version==halofit_brieden2023_tweaked .OR. &
+                this%halofit_version==halofit_brieden2023_tweaked_thinweb .OR. &
                 this%halofit_version==halofit_brieden2023_cross_tweaked .OR. &
                 this%halofit_version==halofit_halomodel_tweaked .OR. &
                 this%halofit_version==halofit_brieden2023_halo .OR. &
@@ -656,6 +660,7 @@
     IF(this%halofit_version==halofit_brieden2023) this%imead=10
     IF(this%halofit_version==halofit_brieden2023_cross) this%imead=11
     IF(this%halofit_version==halofit_brieden2023_tweaked) this%imead=12
+    IF(this%halofit_version==halofit_brieden2023_tweaked_thinweb) this%imead=12
     IF(this%halofit_version==halofit_brieden2023_cross_tweaked) this%imead=13
     IF(this%halofit_version==halofit_halomodel_tweaked) this%imead=6
     IF(this%halofit_version==halofit_brieden2023_halo) this%imead=12
@@ -701,12 +706,12 @@
     this%ivar_fnu=0
     IF(this%halofit_version==halofit_brieden2023_cross_profilecusp) this%ivar_profile=1
     IF(this%halofit_version==halofit_brieden2023_cross_profileconc) this%ivar_profile=2
+    IF(this%halofit_version==halofit_brieden2023_tweaked_thinweb) this%ivar_profile=3
     IF(this%halofit_version==halofit_brieden2023_cross_nobias) this%ivar_bias=1
     IF(this%halofit_version==halofit_brieden2023_cross_nohalobias) this%ivar_bias=2
     IF(this%halofit_version==halofit_brieden2023_cross_tinkerhalobias) this%ivar_bias=3
     IF(this%halofit_version==halofit_brieden2023_cross_fnumasscutlow) this%ivar_fnu=1
     IF(this%halofit_version==halofit_brieden2023_cross_fnumasscuthigh) this%ivar_fnu=2
-    !IF(this%halofit_version==halofit_brieden2023_tweaked) this%ivar_profile=3
     !IF(this%halofit_version==halofit_brieden2023_tweaked) this%ivar_fnu=2
 
     HM_verbose = (FeedbackLevel>1)
@@ -1262,6 +1267,7 @@
     ! Baryon feedback parameters
     IF(this%halofit_version==halofit_mead2015 .OR. this%halofit_version==halofit_mead2016 .OR. this%halofit_version==halofit_brieden2023 .OR. & 
         this%halofit_version == halofit_brieden2023_tweaked .OR. & 
+        this%halofit_version == halofit_brieden2023_tweaked_thinweb .OR. &
         this%halofit_version == halofit_brieden2023_halominussphere .OR. &
         this%halofit_version == halofit_brieden2023_filaminussphere .OR. &
         this%halofit_version == halofit_brieden2023_sheetminussphere)  THEN
@@ -2098,7 +2104,9 @@
             !wk=win_alt_nfw(k*lut%nu(i)**et,lut%rv(i),lut%c(i),lut%rr(i), 3) !this is NFW with all mass within R (only used for
             !testing, not relevant.
             IF(this%ivar_profile==3) THEN
-                !This corresponds to the default 'constant density' case introduced in section 3.4.2 of 2508.10902    
+                !'Thin web' case (ii-b) of section 3.4.2 of 2508.10902: infinitely thin sheets/filaments multiplied by the NFW
+                !window of the halo with the same mass and concentration c(M), i.e. these window functions depend on concentration.
+                !This is the upper limit of the sheet/filament concentration (blue bands in the paper), selected via ivar_profile=3.
                 wkf=win_alt_nfw(k*lut%nu(i)**0.0,lut%rv(i),lut%c(i),lut%rr(i), 2)
                 wks=win_alt_nfw(k*lut%nu(i)**0.0,lut%rv(i),lut%c(i),lut%rr(i), 1)
                 wkf_2=win_alt_2wc(k*lut%nu(i)**0.0,lut%rv(i),lut%c(i),lut%rr(i), 2)
@@ -2106,8 +2114,9 @@
                 wkf_x=win_alt_cross(k*lut%nu(i)**0.0,lut%rv(i),lut%rr(i), 2)
                 wks_x=win_alt_cross(k*lut%nu(i)**0.0,lut%rv(i),lut%rr(i), 1)
             ELSE
-                !choose this for simpler window functions (no dependence on concentration)
-                !This corresponds to the 'infinite density (thin web)' case introduced in section 3.4.2 of 2508.10902 
+                !Default 'constant density' case (ii-a) of section 3.4.2 of 2508.10902: homogeneous cylinder (filament) and slab
+                !(sheet) approximations, W_f^2 and W_s^2 of the paper, with no dependence on concentration.
+                !ivar_profile=1,2 only change the un-squared window returned by win_alt (used in the cross terms), not wkf_2/wks_2.
                 wkf=win_alt(k*lut%nu(i)**0.0,lut%rv(i),lut%rr(i), 2, this%ivar_profile)
                 wks=win_alt(k*lut%nu(i)**0.0,lut%rv(i),lut%rr(i), 1, this%ivar_profile)
                 wkf_2=win_alt_2w(k*lut%nu(i)**0.0,lut%rv(i),lut%rr(i), 2)
@@ -2125,7 +2134,7 @@
                 !Here,(imead=10, corresponding to 'brieden2023')  we only take into account filaments and haloes (no sheets).
                 integrand(i)=(g*(wk_2-wkf_2)+gf*(wkf_2-wks_2))*lut%m(i)
             ELSE IF (this%imead==12 .AND. this%ibrieden==0) THEN
-                !Here, (imead=12, corresponding to 'brieden2023_tweaked') we include sheets, but only considering the part beyond
+                !Here, (imead=12, corresponding to 'brieden2023_tweaked' and 'brieden2023_tweaked_thinweb') we include sheets, but only considering the part beyond
                 !the nonlinear scale (see eq. (40) of ) 2508.10902.    
                 integrand(i)=(g*(wk_2-wkf_2)+gf*(wkf_2-wks_2)+gs*(wks_2-wks_2*WindowTophat(k, lut%rnl, 1._dl)**2))*lut%m(i)
             ELSE IF (this%imead==11 .OR. this%imead==13) THEN
@@ -2265,6 +2274,7 @@
     
     IF(this%imead==11 .OR. this%imead==13) THEN
         IF (this%ivar_profile==3) THEN
+            !Low-mass-bin correction of the cross sums with the same profile choice as in the loop above (3='thin web', else constant density)
             sum_halo_cross=inttab(lut%nu,integrand_halo,1,lut%n,iorder) &
                     +(1-sum_halo)*win(k*lut%nu(1)**et,lut%rv(1),lut%c(1))*bias(lut%nu(1), 4, lut%dc, (lut%rr(1)/lut%rv(1))**(3._dl), this%ivar_bias)
             sum_filament_cross=inttab(lut%nu,integrand_filament,1,lut%n,iorder) &
