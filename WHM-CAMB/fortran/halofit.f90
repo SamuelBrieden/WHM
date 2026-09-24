@@ -102,6 +102,9 @@
         real(dl) :: HMcode_A_baryon=3.13_dl
         real(dl) :: HMcode_eta_baryon=0.603_dl
         real(dl) :: HMcode_logT_AGN=7.8_dl
+        !!SB - WHM switches, settable from Python (set_params) or the ini file; they act on top of halofit_version
+        integer :: WHM_hmf = 0      !halo mass function: 0 = Sheth & Tormen (baseline), 1 = Warren et al. (2006)
+        integer :: WHM_thinweb = 0  !1 = 'thin web' sheet/filament profiles (ivar_profile=3) for any brieden2023 mode
         !!AM - Added these types for HMcode
         integer, private :: imead !!AM - added these for HMcode, need to be visible to all subroutines and functions
         integer, private :: ibrieden !!SB - added to distinguish between halos, filaments, sheets 
@@ -300,6 +303,8 @@
     class(TIniFile), intent(in) :: Ini
 
     this%halofit_version = Ini%Read_Int('halofit_version', halofit_default)
+    this%WHM_hmf = Ini%Read_Int('WHM_hmf', 0)
+    this%WHM_thinweb = Ini%Read_Int('WHM_thinweb', 0)
     IF(this%halofit_version == halofit_mead2020_feedback .OR. this%halofit_version == halofit_brieden2023_feedback) THEN
         this%HMcode_logT_AGN = Ini%Read_Double('HMcode_logT_AGN', 7.8_dl)
     END IF
@@ -707,6 +712,7 @@
     IF(this%halofit_version==halofit_brieden2023_cross_profilecusp) this%ivar_profile=1
     IF(this%halofit_version==halofit_brieden2023_cross_profileconc) this%ivar_profile=2
     IF(this%halofit_version==halofit_brieden2023_tweaked_thinweb) this%ivar_profile=3
+    IF(this%WHM_thinweb==1) this%ivar_profile=3 !SB - switch: thin-web profiles for whichever brieden2023 mode is selected
     IF(this%halofit_version==halofit_brieden2023_cross_nobias) this%ivar_bias=1
     IF(this%halofit_version==halofit_brieden2023_cross_nohalobias) this%ivar_bias=2
     IF(this%halofit_version==halofit_brieden2023_cross_tinkerhalobias) this%ivar_bias=3
@@ -2048,7 +2054,11 @@
     !Before calculating the 1-halo term, integrate over all mass functions and obtain the percentage of matter residing in sheets, filaments and halos within the mass range. Treat the remaining matter as objects with masses at the lower boundary 
     IF(this%imead>=10) THEN
         DO i=1,lut%n
-            g=gnu(lut%nu(i), 4, this%ivar_fnu)
+            IF(this%WHM_hmf==1) THEN
+                g=gwarren(lut%sig(i))/lut%nu(i) !SB - Warren et al. (2006) halo mass function, f(sigma) dln(1/sigma) -> f(nu) dnu
+            ELSE
+                g=gnu(lut%nu(i), 4, this%ivar_fnu)
+            END IF
             !g=gwatson(lut%sig(i))/lut%nu(i)
             !g=gwarren(lut%sig(i))/lut%nu(i)
             !g=gnu(lut%nu(i), 3, this%ivar_fnu)
@@ -2083,7 +2093,11 @@
         m=lut%m(i)
         IF(this%imead>=10) THEN
             !Use this (collapsed_dimensions=1,2,3) for sheets, filaments and halos respectively if you want to be consistent with Shen 2006
-            g=gnu(lut%nu(i), 4, this%ivar_fnu)
+            IF(this%WHM_hmf==1) THEN
+                g=gwarren(lut%sig(i))/lut%nu(i) !SB - Warren et al. (2006) halo mass function, f(sigma) dln(1/sigma) -> f(nu) dnu
+            ELSE
+                g=gnu(lut%nu(i), 4, this%ivar_fnu)
+            END IF
             !g=gwatson(lut%sig(i))/lut%nu(i)
             !g=gwarren(lut%sig(i))/lut%nu(i)
             !g=gnu(lut%nu(i), 3)
