@@ -103,7 +103,7 @@
         real(dl) :: HMcode_eta_baryon=0.603_dl
         real(dl) :: HMcode_logT_AGN=7.8_dl
         !!SB - WHM switches, settable from Python (set_params) or the ini file; they act on top of halofit_version
-        integer :: WHM_hmf = 0      !halo mass function: 0 = Sheth & Tormen (baseline), 1 = Warren et al. (2006)
+        integer :: WHM_hmf = 0      !halo mass function: 0 = Sheth & Tormen (baseline), 1 = Warren et al. (2006), 2 = Despali et al. (2016)
         integer :: WHM_thinweb = 0  !1 = 'thin web' sheet/filament profiles (ivar_profile=3) for any brieden2023 mode
         !!AM - Added these types for HMcode
         integer, private :: imead !!AM - added these for HMcode, need to be visible to all subroutines and functions
@@ -2056,6 +2056,8 @@
         DO i=1,lut%n
             IF(this%WHM_hmf==1) THEN
                 g=gwarren(lut%sig(i))/lut%nu(i) !SB - Warren et al. (2006) halo mass function, f(sigma) dln(1/sigma) -> f(nu) dnu
+            ELSE IF(this%WHM_hmf==2) THEN
+                g=gdesp(lut%nu(i)) !SB - Despali et al. (2016) parameters in the Sheth & Tormen form
             ELSE
                 g=gnu(lut%nu(i), 4, this%ivar_fnu)
             END IF
@@ -2095,6 +2097,8 @@
             !Use this (collapsed_dimensions=1,2,3) for sheets, filaments and halos respectively if you want to be consistent with Shen 2006
             IF(this%WHM_hmf==1) THEN
                 g=gwarren(lut%sig(i))/lut%nu(i) !SB - Warren et al. (2006) halo mass function, f(sigma) dln(1/sigma) -> f(nu) dnu
+            ELSE IF(this%WHM_hmf==2) THEN
+                g=gdesp(lut%nu(i)) !SB - Despali et al. (2016) parameters in the Sheth & Tormen form
             ELSE
                 g=gnu(lut%nu(i), 4, this%ivar_fnu)
             END IF
@@ -3469,7 +3473,7 @@
     END FUNCTION gst
 
     FUNCTION gdesp(nu)
-    !Sheth & Tormen (1999) mass function!
+    !Despali et al. (2016) mass function (Sheth & Tormen form, virial-overdensity parameters)!
     REAL(dl) :: gdesp
     REAL(dl), INTENT(IN) :: nu
     REAL(dl), PARAMETER :: p=0.2536

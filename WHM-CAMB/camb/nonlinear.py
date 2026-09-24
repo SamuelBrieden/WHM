@@ -106,7 +106,7 @@ class Halofit(NonLinearModel):
         ("HMCode_A_baryon", c_double, "HMcode parameter A_baryon"),
         ("HMCode_eta_baryon", c_double, "HMcode parameter eta_baryon"),
         ("HMCode_logT_AGN", c_double, "HMcode parameter log10(T_AGN/K)"),
-        ("WHM_hmf", c_int, "WHM halo mass function: 0 Sheth-Tormen (baseline), 1 Warren et al. 2006"),
+        ("WHM_hmf", c_int, "WHM halo mass function: 0 Sheth-Tormen (baseline), 1 Warren et al. 2006, 2 Despali et al. 2016"),
         ("WHM_thinweb", c_int, "WHM sheet/filament profiles: 0 constant density (baseline), 1 thin web")
     ]
 
@@ -137,7 +137,7 @@ class Halofit(NonLinearModel):
         :param HMCode_A_baryon: HMcode parameter A_baryon. Default 3.13. Used only in models mead2015 and mead2016 (and its alias mead).
         :param HMCode_eta_baryon: HMcode parameter eta_baryon. Default 0.603. Used only in mead2015 and mead2016 (and its alias mead).
         :param HMCode_logT_AGN: HMcode parameter logT_AGN. Default 7.8. Used only in model mead2020_feedback.
-        :param WHM_hmf: WHM halo mass function, 0 = Sheth-Tormen (baseline), 1 = Warren et al. (2006). brieden2023* models only.
+        :param WHM_hmf: WHM halo mass function, 0 = Sheth-Tormen (baseline), 1 = Warren et al. (2006), 2 = Despali et al. (2016). brieden2023* models only.
         :param WHM_thinweb: 1 = 'thin web' sheet/filament profiles instead of constant density. brieden2023* models only.
         """
         self.halofit_version = halofit_version
