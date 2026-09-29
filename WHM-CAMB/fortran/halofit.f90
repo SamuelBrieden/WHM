@@ -61,35 +61,35 @@
     integer, parameter :: halofit_casarini=7
     integer, parameter :: halofit_mead2016=5, halofit_halomodel=6, halofit_mead2015=8, halofit_mead2020=9
     integer, parameter :: halofit_mead2020_feedback=10
-    integer, parameter :: halofit_brieden2023=11
-    integer, parameter :: halofit_brieden2023_feedback=12
-    integer, parameter :: halofit_brieden2023_cross=13
-    integer, parameter :: halofit_brieden2023_tweaked=14
-    integer, parameter :: halofit_brieden2023_cross_tweaked=15
+    integer, parameter :: halofit_brieden2025=11
+    integer, parameter :: halofit_brieden2025_feedback=12
+    integer, parameter :: halofit_brieden2025_cross=13
+    integer, parameter :: halofit_brieden2025_tweaked=14
+    integer, parameter :: halofit_brieden2025_cross_tweaked=15
     integer, parameter :: halofit_halomodel_tweaked=16
-    integer, parameter :: halofit_brieden2023_halo=17
-    integer, parameter :: halofit_brieden2023_fila=18
-    integer, parameter :: halofit_brieden2023_sheet=19
-    integer, parameter :: halofit_brieden2023_halosphere=20
-    integer, parameter :: halofit_brieden2023_filasphere=21
-    integer, parameter :: halofit_brieden2023_sheetsphere=22
-    integer, parameter :: halofit_brieden2023_halominussphere=23
-    integer, parameter :: halofit_brieden2023_filaminussphere=24
-    integer, parameter :: halofit_brieden2023_sheetminussphere=25    
-    integer, parameter :: halofit_brieden2023_halocross=26
-    integer, parameter :: halofit_brieden2023_filacross=27
-    integer, parameter :: halofit_brieden2023_sheetcross=28
-    integer, parameter :: halofit_brieden2023_halospherecross=29
-    integer, parameter :: halofit_brieden2023_filaspherecross=30
-    integer, parameter :: halofit_brieden2023_sheetspherecross=31
-    integer, parameter :: halofit_brieden2023_cross_profilecusp=32
-    integer, parameter :: halofit_brieden2023_cross_profileconc=33
-    integer, parameter :: halofit_brieden2023_cross_nobias=34
-    integer, parameter :: halofit_brieden2023_cross_nohalobias=35
-    integer, parameter :: halofit_brieden2023_cross_tinkerhalobias=36
-    integer, parameter :: halofit_brieden2023_cross_fnumasscutlow=37
-    integer, parameter :: halofit_brieden2023_cross_fnumasscuthigh=38
-    integer, parameter :: halofit_brieden2023_tweaked_thinweb=39 !SB - brieden2023_tweaked with 'thin web' sheet/filament profiles (ivar_profile=3)
+    integer, parameter :: halofit_brieden2025_halo=17
+    integer, parameter :: halofit_brieden2025_fila=18
+    integer, parameter :: halofit_brieden2025_sheet=19
+    integer, parameter :: halofit_brieden2025_halosphere=20
+    integer, parameter :: halofit_brieden2025_filasphere=21
+    integer, parameter :: halofit_brieden2025_sheetsphere=22
+    integer, parameter :: halofit_brieden2025_halominussphere=23
+    integer, parameter :: halofit_brieden2025_filaminussphere=24
+    integer, parameter :: halofit_brieden2025_sheetminussphere=25    
+    integer, parameter :: halofit_brieden2025_halocross=26
+    integer, parameter :: halofit_brieden2025_filacross=27
+    integer, parameter :: halofit_brieden2025_sheetcross=28
+    integer, parameter :: halofit_brieden2025_halospherecross=29
+    integer, parameter :: halofit_brieden2025_filaspherecross=30
+    integer, parameter :: halofit_brieden2025_sheetspherecross=31
+    integer, parameter :: halofit_brieden2025_cross_profilecusp=32
+    integer, parameter :: halofit_brieden2025_cross_profileconc=33
+    integer, parameter :: halofit_brieden2025_cross_nobias=34
+    integer, parameter :: halofit_brieden2025_cross_nohalobias=35
+    integer, parameter :: halofit_brieden2025_cross_tinkerhalobias=36
+    integer, parameter :: halofit_brieden2025_cross_fnumasscutlow=37
+    integer, parameter :: halofit_brieden2025_cross_fnumasscuthigh=38
+    integer, parameter :: halofit_brieden2025_tweaked_thinweb=39 !SB - brieden2025_tweaked with 'thin web' sheet/filament profiles (ivar_profile=3)
     integer, parameter :: halofit_mead=halofit_mead2016 ! AM Kept for backwards compatability
     integer, parameter :: halofit_default=halofit_mead2020
     
@@ -104,7 +104,7 @@
         real(dl) :: HMcode_logT_AGN=7.8_dl
         !!SB - WHM switches, settable from Python (set_params) or the ini file; they act on top of halofit_version
         integer :: WHM_hmf = 0      !halo mass function: 0 = Sheth & Tormen (baseline), 1 = Warren et al. (2006), 2 = Despali et al. (2016)
-        integer :: WHM_thinweb = 0  !1 = 'thin web' sheet/filament profiles (ivar_profile=3) for any brieden2023 mode
+        integer :: WHM_thinweb = 0  !1 = 'thin web' sheet/filament profiles (ivar_profile=3) for any brieden2025 mode
         !!AM - Added these types for HMcode
         integer, private :: imead !!AM - added these for HMcode, need to be visible to all subroutines and functions
         integer, private :: ibrieden !!SB - added to distinguish between halos, filaments, sheets 
@@ -142,12 +142,12 @@
     public halofit_mead2016, halofit_mead2015, halofit_mead2020, halofit_halomodel, halofit_casarini
     public halofit_mead2020_feedback
     public halofit_mead ! AM for backwards compatability
-    public halofit_brieden2023, halofit_brieden2023_feedback, halofit_brieden2023_cross
-    public halofit_brieden2023_tweaked, halofit_brieden2023_cross_tweaked, halofit_halomodel_tweaked
-    public halofit_brieden2023_halo, halofit_brieden2023_fila, halofit_brieden2023_sheet, halofit_brieden2023_halosphere, halofit_brieden2023_filasphere, halofit_brieden2023_sheetsphere, halofit_brieden2023_halominussphere, halofit_brieden2023_filaminussphere, halofit_brieden2023_sheetminussphere
-    public halofit_brieden2023_halocross, halofit_brieden2023_filacross, halofit_brieden2023_sheetcross, halofit_brieden2023_halospherecross, halofit_brieden2023_filaspherecross, halofit_brieden2023_sheetspherecross
-    public halofit_brieden2023_cross_profilecusp, halofit_brieden2023_cross_profileconc, halofit_brieden2023_cross_nobias, halofit_brieden2023_cross_nohalobias, halofit_brieden2023_cross_tinkerhalobias, halofit_brieden2023_cross_fnumasscutlow, halofit_brieden2023_cross_fnumasscuthigh
-    public halofit_brieden2023_tweaked_thinweb
+    public halofit_brieden2025, halofit_brieden2025_feedback, halofit_brieden2025_cross
+    public halofit_brieden2025_tweaked, halofit_brieden2025_cross_tweaked, halofit_halomodel_tweaked
+    public halofit_brieden2025_halo, halofit_brieden2025_fila, halofit_brieden2025_sheet, halofit_brieden2025_halosphere, halofit_brieden2025_filasphere, halofit_brieden2025_sheetsphere, halofit_brieden2025_halominussphere, halofit_brieden2025_filaminussphere, halofit_brieden2025_sheetminussphere
+    public halofit_brieden2025_halocross, halofit_brieden2025_filacross, halofit_brieden2025_sheetcross, halofit_brieden2025_halospherecross, halofit_brieden2025_filaspherecross, halofit_brieden2025_sheetspherecross
+    public halofit_brieden2025_cross_profilecusp, halofit_brieden2025_cross_profileconc, halofit_brieden2025_cross_nobias, halofit_brieden2025_cross_nohalobias, halofit_brieden2025_cross_tinkerhalobias, halofit_brieden2025_cross_fnumasscutlow, halofit_brieden2025_cross_fnumasscuthigh
+    public halofit_brieden2025_tweaked_thinweb
 
     TYPE HM_cosmology
         !Contains only things that do not need to be recalculated with each new z
@@ -305,16 +305,16 @@
     this%halofit_version = Ini%Read_Int('halofit_version', halofit_default)
     this%WHM_hmf = Ini%Read_Int('WHM_hmf', 0)
     this%WHM_thinweb = Ini%Read_Int('WHM_thinweb', 0)
-    IF(this%halofit_version == halofit_mead2020_feedback .OR. this%halofit_version == halofit_brieden2023_feedback) THEN
+    IF(this%halofit_version == halofit_mead2020_feedback .OR. this%halofit_version == halofit_brieden2025_feedback) THEN
         this%HMcode_logT_AGN = Ini%Read_Double('HMcode_logT_AGN', 7.8_dl)
     END IF
-    IF(this%halofit_version == halofit_brieden2023 .OR. & 
-        this%halofit_version == halofit_brieden2023_tweaked .OR. & 
-        this%halofit_version == halofit_brieden2023_tweaked_thinweb .OR. &
-        this%halofit_version == halofit_brieden2023_halominussphere .OR. &
-        this%halofit_version == halofit_brieden2023_filaminussphere .OR. &
-        this%halofit_version == halofit_brieden2023_sheetminussphere .OR. &
-        this%halofit_version == halofit_brieden2023_feedback) THEN
+    IF(this%halofit_version == halofit_brieden2025 .OR. & 
+        this%halofit_version == halofit_brieden2025_tweaked .OR. & 
+        this%halofit_version == halofit_brieden2025_tweaked_thinweb .OR. &
+        this%halofit_version == halofit_brieden2025_halominussphere .OR. &
+        this%halofit_version == halofit_brieden2025_filaminussphere .OR. &
+        this%halofit_version == halofit_brieden2025_sheetminussphere .OR. &
+        this%halofit_version == halofit_brieden2025_feedback) THEN
         this%HMCode_A_baryon = Ini%Read_Double('HMCode_A_baryon', 4.0_dl)
         this%HMCode_eta_baryon = Ini%Read_Double('HMCode_eta_baryon', 0.0_dl)
     END IF
@@ -344,35 +344,35 @@
                 this%halofit_version==halofit_mead2015 .OR. &
                 this%halofit_version==halofit_mead2020 .OR. &
                 this%halofit_version==halofit_mead2020_feedback .OR. &
-                this%halofit_version==halofit_brieden2023 .OR. &
-                this%halofit_version==halofit_brieden2023_feedback .OR. &
-                this%halofit_version==halofit_brieden2023_cross .OR. &
-                this%halofit_version==halofit_brieden2023_tweaked .OR. &
-                this%halofit_version==halofit_brieden2023_tweaked_thinweb .OR. &
-                this%halofit_version==halofit_brieden2023_cross_tweaked .OR. &
+                this%halofit_version==halofit_brieden2025 .OR. &
+                this%halofit_version==halofit_brieden2025_feedback .OR. &
+                this%halofit_version==halofit_brieden2025_cross .OR. &
+                this%halofit_version==halofit_brieden2025_tweaked .OR. &
+                this%halofit_version==halofit_brieden2025_tweaked_thinweb .OR. &
+                this%halofit_version==halofit_brieden2025_cross_tweaked .OR. &
                 this%halofit_version==halofit_halomodel_tweaked .OR. &
-                this%halofit_version==halofit_brieden2023_halo .OR. &
-                this%halofit_version==halofit_brieden2023_fila .OR. &
-                this%halofit_version==halofit_brieden2023_sheet .OR. &
-                this%halofit_version==halofit_brieden2023_halosphere .OR. &
-                this%halofit_version==halofit_brieden2023_filasphere .OR. &
-                this%halofit_version==halofit_brieden2023_sheetsphere .OR. &
-                this%halofit_version==halofit_brieden2023_halominussphere .OR. &
-                this%halofit_version==halofit_brieden2023_filaminussphere .OR. &
-                this%halofit_version==halofit_brieden2023_sheetminussphere .OR. &
-                this%halofit_version==halofit_brieden2023_halocross .OR. &
-                this%halofit_version==halofit_brieden2023_filacross .OR. &
-                this%halofit_version==halofit_brieden2023_sheetcross .OR. &
-                this%halofit_version==halofit_brieden2023_halospherecross .OR. &
-                this%halofit_version==halofit_brieden2023_filaspherecross .OR. &
-                this%halofit_version==halofit_brieden2023_sheetspherecross .OR. &
-                this%halofit_version==halofit_brieden2023_cross_profilecusp .OR. &
-                this%halofit_version==halofit_brieden2023_cross_profileconc .OR. &
-                this%halofit_version==halofit_brieden2023_cross_nobias .OR. &
-                this%halofit_version==halofit_brieden2023_cross_nohalobias .OR. &
-                this%halofit_version==halofit_brieden2023_cross_tinkerhalobias .OR. &
-                this%halofit_version==halofit_brieden2023_cross_fnumasscutlow .OR. &
-                this%halofit_version==halofit_brieden2023_cross_fnumasscuthigh) THEN
+                this%halofit_version==halofit_brieden2025_halo .OR. &
+                this%halofit_version==halofit_brieden2025_fila .OR. &
+                this%halofit_version==halofit_brieden2025_sheet .OR. &
+                this%halofit_version==halofit_brieden2025_halosphere .OR. &
+                this%halofit_version==halofit_brieden2025_filasphere .OR. &
+                this%halofit_version==halofit_brieden2025_sheetsphere .OR. &
+                this%halofit_version==halofit_brieden2025_halominussphere .OR. &
+                this%halofit_version==halofit_brieden2025_filaminussphere .OR. &
+                this%halofit_version==halofit_brieden2025_sheetminussphere .OR. &
+                this%halofit_version==halofit_brieden2025_halocross .OR. &
+                this%halofit_version==halofit_brieden2025_filacross .OR. &
+                this%halofit_version==halofit_brieden2025_sheetcross .OR. &
+                this%halofit_version==halofit_brieden2025_halospherecross .OR. &
+                this%halofit_version==halofit_brieden2025_filaspherecross .OR. &
+                this%halofit_version==halofit_brieden2025_sheetspherecross .OR. &
+                this%halofit_version==halofit_brieden2025_cross_profilecusp .OR. &
+                this%halofit_version==halofit_brieden2025_cross_profileconc .OR. &
+                this%halofit_version==halofit_brieden2025_cross_nobias .OR. &
+                this%halofit_version==halofit_brieden2025_cross_nohalobias .OR. &
+                this%halofit_version==halofit_brieden2025_cross_tinkerhalobias .OR. &
+                this%halofit_version==halofit_brieden2025_cross_fnumasscutlow .OR. &
+                this%halofit_version==halofit_brieden2025_cross_fnumasscuthigh) THEN
                 CALL this%HMcode(State,CAMB_Pk)
             ELSE
 
@@ -662,63 +662,63 @@
     IF(this%halofit_version==halofit_mead2016) this%imead=1
     IF(this%halofit_version==halofit_mead2015) this%imead=2
     IF(this%halofit_version==halofit_mead2020) this%imead=3
-    IF(this%halofit_version==halofit_brieden2023) this%imead=10
-    IF(this%halofit_version==halofit_brieden2023_cross) this%imead=11
-    IF(this%halofit_version==halofit_brieden2023_tweaked) this%imead=12
-    IF(this%halofit_version==halofit_brieden2023_tweaked_thinweb) this%imead=12
-    IF(this%halofit_version==halofit_brieden2023_cross_tweaked) this%imead=13
+    IF(this%halofit_version==halofit_brieden2025) this%imead=10
+    IF(this%halofit_version==halofit_brieden2025_cross) this%imead=11
+    IF(this%halofit_version==halofit_brieden2025_tweaked) this%imead=12
+    IF(this%halofit_version==halofit_brieden2025_tweaked_thinweb) this%imead=12
+    IF(this%halofit_version==halofit_brieden2025_cross_tweaked) this%imead=13
     IF(this%halofit_version==halofit_halomodel_tweaked) this%imead=6
-    IF(this%halofit_version==halofit_brieden2023_halo) this%imead=12
-    IF(this%halofit_version==halofit_brieden2023_fila) this%imead=12
-    IF(this%halofit_version==halofit_brieden2023_sheet) this%imead=12
-    IF(this%halofit_version==halofit_brieden2023_halosphere) this%imead=12
-    IF(this%halofit_version==halofit_brieden2023_filasphere) this%imead=12
-    IF(this%halofit_version==halofit_brieden2023_sheetsphere) this%imead=12
-    IF(this%halofit_version==halofit_brieden2023_halominussphere) this%imead=12
-    IF(this%halofit_version==halofit_brieden2023_filaminussphere) this%imead=12
-    IF(this%halofit_version==halofit_brieden2023_sheetminussphere) this%imead=12
-    IF(this%halofit_version==halofit_brieden2023_halocross) this%imead=10
-    IF(this%halofit_version==halofit_brieden2023_filacross) this%imead=10
-    IF(this%halofit_version==halofit_brieden2023_sheetcross) this%imead=10
-    IF(this%halofit_version==halofit_brieden2023_halospherecross) this%imead=10
-    IF(this%halofit_version==halofit_brieden2023_filaspherecross) this%imead=10
-    IF(this%halofit_version==halofit_brieden2023_sheetspherecross) this%imead=10
-    IF(this%halofit_version==halofit_brieden2023_cross_profilecusp) this%imead=11
-    IF(this%halofit_version==halofit_brieden2023_cross_profileconc) this%imead=11
-    IF(this%halofit_version==halofit_brieden2023_cross_nobias) this%imead=11
-    IF(this%halofit_version==halofit_brieden2023_cross_nohalobias) this%imead=11
-    IF(this%halofit_version==halofit_brieden2023_cross_tinkerhalobias) this%imead=11
-    IF(this%halofit_version==halofit_brieden2023_cross_fnumasscutlow) this%imead=11
-    IF(this%halofit_version==halofit_brieden2023_cross_fnumasscuthigh) this%imead=11
+    IF(this%halofit_version==halofit_brieden2025_halo) this%imead=12
+    IF(this%halofit_version==halofit_brieden2025_fila) this%imead=12
+    IF(this%halofit_version==halofit_brieden2025_sheet) this%imead=12
+    IF(this%halofit_version==halofit_brieden2025_halosphere) this%imead=12
+    IF(this%halofit_version==halofit_brieden2025_filasphere) this%imead=12
+    IF(this%halofit_version==halofit_brieden2025_sheetsphere) this%imead=12
+    IF(this%halofit_version==halofit_brieden2025_halominussphere) this%imead=12
+    IF(this%halofit_version==halofit_brieden2025_filaminussphere) this%imead=12
+    IF(this%halofit_version==halofit_brieden2025_sheetminussphere) this%imead=12
+    IF(this%halofit_version==halofit_brieden2025_halocross) this%imead=10
+    IF(this%halofit_version==halofit_brieden2025_filacross) this%imead=10
+    IF(this%halofit_version==halofit_brieden2025_sheetcross) this%imead=10
+    IF(this%halofit_version==halofit_brieden2025_halospherecross) this%imead=10
+    IF(this%halofit_version==halofit_brieden2025_filaspherecross) this%imead=10
+    IF(this%halofit_version==halofit_brieden2025_sheetspherecross) this%imead=10
+    IF(this%halofit_version==halofit_brieden2025_cross_profilecusp) this%imead=11
+    IF(this%halofit_version==halofit_brieden2025_cross_profileconc) this%imead=11
+    IF(this%halofit_version==halofit_brieden2025_cross_nobias) this%imead=11
+    IF(this%halofit_version==halofit_brieden2025_cross_nohalobias) this%imead=11
+    IF(this%halofit_version==halofit_brieden2025_cross_tinkerhalobias) this%imead=11
+    IF(this%halofit_version==halofit_brieden2025_cross_fnumasscutlow) this%imead=11
+    IF(this%halofit_version==halofit_brieden2025_cross_fnumasscuthigh) this%imead=11
     this%ibrieden=0
-    IF(this%halofit_version==halofit_brieden2023_halo) this%ibrieden=1
-    IF(this%halofit_version==halofit_brieden2023_fila) this%ibrieden=2
-    IF(this%halofit_version==halofit_brieden2023_sheet) this%ibrieden=3
-    IF(this%halofit_version==halofit_brieden2023_halosphere) this%ibrieden=4
-    IF(this%halofit_version==halofit_brieden2023_filasphere) this%ibrieden=5
-    IF(this%halofit_version==halofit_brieden2023_sheetsphere) this%ibrieden=6
-    IF(this%halofit_version==halofit_brieden2023_halominussphere) this%ibrieden=7
-    IF(this%halofit_version==halofit_brieden2023_filaminussphere) this%ibrieden=8
-    IF(this%halofit_version==halofit_brieden2023_sheetminussphere) this%ibrieden=9
-    IF(this%halofit_version==halofit_brieden2023_halocross) this%ibrieden=10
-    IF(this%halofit_version==halofit_brieden2023_filacross) this%ibrieden=11
-    IF(this%halofit_version==halofit_brieden2023_sheetcross) this%ibrieden=12
-    IF(this%halofit_version==halofit_brieden2023_halospherecross) this%ibrieden=13
-    IF(this%halofit_version==halofit_brieden2023_filaspherecross) this%ibrieden=14
-    IF(this%halofit_version==halofit_brieden2023_sheetspherecross) this%ibrieden=15
+    IF(this%halofit_version==halofit_brieden2025_halo) this%ibrieden=1
+    IF(this%halofit_version==halofit_brieden2025_fila) this%ibrieden=2
+    IF(this%halofit_version==halofit_brieden2025_sheet) this%ibrieden=3
+    IF(this%halofit_version==halofit_brieden2025_halosphere) this%ibrieden=4
+    IF(this%halofit_version==halofit_brieden2025_filasphere) this%ibrieden=5
+    IF(this%halofit_version==halofit_brieden2025_sheetsphere) this%ibrieden=6
+    IF(this%halofit_version==halofit_brieden2025_halominussphere) this%ibrieden=7
+    IF(this%halofit_version==halofit_brieden2025_filaminussphere) this%ibrieden=8
+    IF(this%halofit_version==halofit_brieden2025_sheetminussphere) this%ibrieden=9
+    IF(this%halofit_version==halofit_brieden2025_halocross) this%ibrieden=10
+    IF(this%halofit_version==halofit_brieden2025_filacross) this%ibrieden=11
+    IF(this%halofit_version==halofit_brieden2025_sheetcross) this%ibrieden=12
+    IF(this%halofit_version==halofit_brieden2025_halospherecross) this%ibrieden=13
+    IF(this%halofit_version==halofit_brieden2025_filaspherecross) this%ibrieden=14
+    IF(this%halofit_version==halofit_brieden2025_sheetspherecross) this%ibrieden=15
     this%ivar_profile=0
     this%ivar_bias=0
     this%ivar_fnu=0
-    IF(this%halofit_version==halofit_brieden2023_cross_profilecusp) this%ivar_profile=1
-    IF(this%halofit_version==halofit_brieden2023_cross_profileconc) this%ivar_profile=2
-    IF(this%halofit_version==halofit_brieden2023_tweaked_thinweb) this%ivar_profile=3
-    IF(this%WHM_thinweb==1) this%ivar_profile=3 !SB - switch: thin-web profiles for whichever brieden2023 mode is selected
-    IF(this%halofit_version==halofit_brieden2023_cross_nobias) this%ivar_bias=1
-    IF(this%halofit_version==halofit_brieden2023_cross_nohalobias) this%ivar_bias=2
-    IF(this%halofit_version==halofit_brieden2023_cross_tinkerhalobias) this%ivar_bias=3
-    IF(this%halofit_version==halofit_brieden2023_cross_fnumasscutlow) this%ivar_fnu=1
-    IF(this%halofit_version==halofit_brieden2023_cross_fnumasscuthigh) this%ivar_fnu=2
-    !IF(this%halofit_version==halofit_brieden2023_tweaked) this%ivar_fnu=2
+    IF(this%halofit_version==halofit_brieden2025_cross_profilecusp) this%ivar_profile=1
+    IF(this%halofit_version==halofit_brieden2025_cross_profileconc) this%ivar_profile=2
+    IF(this%halofit_version==halofit_brieden2025_tweaked_thinweb) this%ivar_profile=3
+    IF(this%WHM_thinweb==1) this%ivar_profile=3 !SB - switch: thin-web profiles for whichever brieden2025 mode is selected
+    IF(this%halofit_version==halofit_brieden2025_cross_nobias) this%ivar_bias=1
+    IF(this%halofit_version==halofit_brieden2025_cross_nohalobias) this%ivar_bias=2
+    IF(this%halofit_version==halofit_brieden2025_cross_tinkerhalobias) this%ivar_bias=3
+    IF(this%halofit_version==halofit_brieden2025_cross_fnumasscutlow) this%ivar_fnu=1
+    IF(this%halofit_version==halofit_brieden2025_cross_fnumasscuthigh) this%ivar_fnu=2
+    !IF(this%halofit_version==halofit_brieden2025_tweaked) this%ivar_fnu=2
 
     HM_verbose = (FeedbackLevel>1)
     !HM_verbose = .true.
@@ -730,7 +730,7 @@
     !!AM - Translate from CAMB variables to my variables
     nz=CAMB_PK%num_z
     nk=CAMB_PK%num_k
-    IF(this%halofit_version==halofit_mead2020_feedback .OR. this%halofit_version == halofit_brieden2023_feedback) THEN
+    IF(this%halofit_version==halofit_mead2020_feedback .OR. this%halofit_version == halofit_brieden2025_feedback) THEN
         ALLOCATE(p_den(nk,nz), p_num(nk,nz))
     END IF
 
@@ -751,13 +751,13 @@
         !Sets the current redshift from the table
         z=CAMB_Pk%Redshifts(j)
 
-        IF(this%halofit_version==halofit_mead2020_feedback .OR. this%halofit_version == halofit_brieden2023_feedback) THEN
+        IF(this%halofit_version==halofit_mead2020_feedback .OR. this%halofit_version == halofit_brieden2025_feedback) THEN
 
             ! Loop over numerator, denominator and HMcode to make feedback response model
             DO ii = 1, 3
 
                 IF(ii==1 .AND. this%halofit_version == halofit_mead2020_feedback) this%imead=3 ! HMcode 2020
-                IF(ii==1 .AND. this%halofit_version == halofit_brieden2023_feedback) this%imead=10 ! HMcode 2020
+                IF(ii==1 .AND. this%halofit_version == halofit_brieden2025_feedback) this%imead=10 ! HMcode 2020
                 IF(ii==2) this%imead=4 ! Denominator for response
                 IF(ii==3) this%imead=5 ! Numerator for response
 
@@ -835,7 +835,7 @@
     END DO
 
     ! Make the non-linear correction from the response for HMcode 2020
-    IF(this%halofit_version==halofit_mead2020_feedback .OR. this%halofit_version == halofit_brieden2023_feedback) THEN
+    IF(this%halofit_version==halofit_mead2020_feedback .OR. this%halofit_version == halofit_brieden2025_feedback) THEN
         CAMB_Pk%nonlin_ratio=CAMB_Pk%nonlin_ratio*sqrt(p_num/p_den)
     END IF
 
@@ -1271,15 +1271,15 @@
     end associate
 
     ! Baryon feedback parameters
-    IF(this%halofit_version==halofit_mead2015 .OR. this%halofit_version==halofit_mead2016 .OR. this%halofit_version==halofit_brieden2023 .OR. & 
-        this%halofit_version == halofit_brieden2023_tweaked .OR. & 
-        this%halofit_version == halofit_brieden2023_tweaked_thinweb .OR. &
-        this%halofit_version == halofit_brieden2023_halominussphere .OR. &
-        this%halofit_version == halofit_brieden2023_filaminussphere .OR. &
-        this%halofit_version == halofit_brieden2023_sheetminussphere)  THEN
+    IF(this%halofit_version==halofit_mead2015 .OR. this%halofit_version==halofit_mead2016 .OR. this%halofit_version==halofit_brieden2025 .OR. & 
+        this%halofit_version == halofit_brieden2025_tweaked .OR. & 
+        this%halofit_version == halofit_brieden2025_tweaked_thinweb .OR. &
+        this%halofit_version == halofit_brieden2025_halominussphere .OR. &
+        this%halofit_version == halofit_brieden2025_filaminussphere .OR. &
+        this%halofit_version == halofit_brieden2025_sheetminussphere)  THEN
         cosm%A_baryon = this%HMcode_A_baryon
         cosm%eta_baryon = this%HMcode_eta_baryon
-    ELSE IF(this%halofit_version==halofit_brieden2023_feedback)  THEN
+    ELSE IF(this%halofit_version==halofit_brieden2025_feedback)  THEN
         cosm%A_baryon = this%HMcode_A_baryon
         cosm%eta_baryon = this%HMcode_eta_baryon
         cosm%logT_AGN = this%HMcode_logT_AGN
@@ -1303,7 +1303,7 @@
     IF(HM_verbose .AND. (this%halofit_version==halofit_mead2015 .OR. this%halofit_version==halofit_mead2016)) THEN
         WRITE(*,*) 'HM_cosmology: A_baryon:', cosm%A_baryon
         WRITE(*,*) 'HM_cosmology: eta_baryon:', cosm%eta_baryon
-    ELSE IF(HM_verbose .AND. (this%halofit_version==halofit_mead2020_feedback .OR. this%halofit_version==halofit_brieden2023_feedback)) THEN
+    ELSE IF(HM_verbose .AND. (this%halofit_version==halofit_mead2020_feedback .OR. this%halofit_version==halofit_brieden2025_feedback)) THEN
         WRITE(*,*) 'HM_cosmology: log10(T_AGN/K):', cosm%logT_AGN
     END IF
     IF(HM_verbose) WRITE(*,*)
@@ -2149,10 +2149,10 @@
             !Sum up the halo, filament and sheet terms already in the integrand, to carry out integration only once.
             IF((this%imead==10) .AND. this%ibrieden==0) THEN
             !Substracting the spherical tophat case (collapsed_dimensions=0), automatically takes into account halo, sheet, and filament exclusion.
-                !Here,(imead=10, corresponding to 'brieden2023')  we only take into account filaments and haloes (no sheets).
+                !Here,(imead=10, corresponding to 'brieden2025')  we only take into account filaments and haloes (no sheets).
                 integrand(i)=(g*(wk_2-wkf_2)+gf*(wkf_2-wks_2))*lut%m(i)
             ELSE IF (this%imead==12 .AND. this%ibrieden==0) THEN
-                !Here, (imead=12, corresponding to 'brieden2023_tweaked' and 'brieden2023_tweaked_thinweb') we include sheets, but only considering the part beyond
+                !Here, (imead=12, corresponding to 'brieden2025_tweaked' and 'brieden2025_tweaked_thinweb') we include sheets, but only considering the part beyond
                 !the nonlinear scale (see eq. (40) of ) 2508.10902.    
                 integrand(i)=(g*(wk_2-wkf_2)+gf*(wkf_2-wks_2)+gs*(wks_2-wks_2*WindowTophat(k, lut%rnl, 1._dl)**2))*lut%m(i)
             ELSE IF (this%imead==11 .OR. this%imead==13) THEN

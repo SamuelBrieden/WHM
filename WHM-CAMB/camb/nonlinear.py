@@ -20,35 +20,35 @@ halofit_mead2015 = 'mead2015'
 halofit_mead2016 = 'mead2016'
 halofit_mead2020 = 'mead2020'
 halofit_mead2020_feedback = 'mead2020_feedback'
-halofit_brieden2023 = 'brieden2023'
-halofit_brieden2023_feedback = 'brieden2023_feedback'
-halofit_brieden2023_cross = 'brieden2023_cross'
-halofit_brieden2023_tweaked = 'brieden2023_tweaked'
-halofit_brieden2023_tweaked_thinweb = 'brieden2023_tweaked_thinweb'
-halofit_brieden2023_cross_tweaked = 'brieden2023_cross_tweaked'
+halofit_brieden2025 = 'brieden2025'
+halofit_brieden2025_feedback = 'brieden2025_feedback'
+halofit_brieden2025_cross = 'brieden2025_cross'
+halofit_brieden2025_tweaked = 'brieden2025_tweaked'
+halofit_brieden2025_tweaked_thinweb = 'brieden2025_tweaked_thinweb'
+halofit_brieden2025_cross_tweaked = 'brieden2025_cross_tweaked'
 halofit_halomodel_tweaked = 'halomodel_tweaked'
-halofit_brieden2023_halo = 'brieden2023_halo'
-halofit_brieden2023_fila = 'brieden2023_fila'
-halofit_brieden2023_sheet = 'brieden2023_sheet'
-halofit_brieden2023_halosphere = 'brieden2023_halosphere'
-halofit_brieden2023_filasphere = 'brieden2023_filasphere'
-halofit_brieden2023_sheetsphere = 'brieden2023_sheetsphere'
-halofit_brieden2023_halominussphere = 'brieden2023_halominussphere'
-halofit_brieden2023_filaminussphere = 'brieden2023_filaminussphere'
-halofit_brieden2023_sheetminussphere = 'brieden2023_sheetminussphere'
-halofit_brieden2023_halocross = 'brieden2023_halocross'
-halofit_brieden2023_filacross = 'brieden2023_filacross'
-halofit_brieden2023_sheetcross = 'brieden2023_sheetcross'
-halofit_brieden2023_halospherecross = 'brieden2023_halospherecross'
-halofit_brieden2023_filaspherecross = 'brieden2023_filaspherecross'
-halofit_brieden2023_sheetspherecross = 'brieden2023_sheetspherecross'
-halofit_brieden2023_cross_profilecusp = 'brieden2023_cross_profilecusp'
-halofit_brieden2023_cross_profileconc = 'brieden2023_cross_profileconc'
-halofit_brieden2023_cross_nobias = 'brieden2023_cross_nobias'
-halofit_brieden2023_cross_nohalobias = 'brieden2023_cross_nohalobias'
-halofit_brieden2023_cross_tinkerhalobias = 'brieden2023_cross_tinkerhalobias'
-halofit_brieden2023_cross_fnumasscutlow = 'brieden2023_cross_fnumasscutlow'
-halofit_brieden2023_cross_fnumasscuthigh = 'brieden2023_cross_fnumasscuthigh'
+halofit_brieden2025_halo = 'brieden2025_halo'
+halofit_brieden2025_fila = 'brieden2025_fila'
+halofit_brieden2025_sheet = 'brieden2025_sheet'
+halofit_brieden2025_halosphere = 'brieden2025_halosphere'
+halofit_brieden2025_filasphere = 'brieden2025_filasphere'
+halofit_brieden2025_sheetsphere = 'brieden2025_sheetsphere'
+halofit_brieden2025_halominussphere = 'brieden2025_halominussphere'
+halofit_brieden2025_filaminussphere = 'brieden2025_filaminussphere'
+halofit_brieden2025_sheetminussphere = 'brieden2025_sheetminussphere'
+halofit_brieden2025_halocross = 'brieden2025_halocross'
+halofit_brieden2025_filacross = 'brieden2025_filacross'
+halofit_brieden2025_sheetcross = 'brieden2025_sheetcross'
+halofit_brieden2025_halospherecross = 'brieden2025_halospherecross'
+halofit_brieden2025_filaspherecross = 'brieden2025_filaspherecross'
+halofit_brieden2025_sheetspherecross = 'brieden2025_sheetspherecross'
+halofit_brieden2025_cross_profilecusp = 'brieden2025_cross_profilecusp'
+halofit_brieden2025_cross_profileconc = 'brieden2025_cross_profileconc'
+halofit_brieden2025_cross_nobias = 'brieden2025_cross_nobias'
+halofit_brieden2025_cross_nohalobias = 'brieden2025_cross_nohalobias'
+halofit_brieden2025_cross_tinkerhalobias = 'brieden2025_cross_tinkerhalobias'
+halofit_brieden2025_cross_fnumasscutlow = 'brieden2025_cross_fnumasscutlow'
+halofit_brieden2025_cross_fnumasscuthigh = 'brieden2025_cross_fnumasscuthigh'
 
 halofit_default = halofit_mead2020
 
@@ -63,35 +63,35 @@ halofit_version_names = {halofit_original: 1,
                          halofit_mead2016: 5,
                          halofit_mead2020: 9,
                          halofit_mead2020_feedback: 10,
-                         halofit_brieden2023: 11,
-                         halofit_brieden2023_feedback: 12,
-                         halofit_brieden2023_cross: 13,
-                         halofit_brieden2023_tweaked: 14,
-                         halofit_brieden2023_cross_tweaked: 15,
+                         halofit_brieden2025: 11,
+                         halofit_brieden2025_feedback: 12,
+                         halofit_brieden2025_cross: 13,
+                         halofit_brieden2025_tweaked: 14,
+                         halofit_brieden2025_cross_tweaked: 15,
                          halofit_halomodel_tweaked: 16,
-                         halofit_brieden2023_halo: 17,
-                         halofit_brieden2023_fila: 18,
-                         halofit_brieden2023_sheet: 19,
-                         halofit_brieden2023_halosphere: 20,
-                         halofit_brieden2023_filasphere: 21,
-                         halofit_brieden2023_sheetsphere: 22,
-                         halofit_brieden2023_halominussphere: 23,
-                         halofit_brieden2023_filaminussphere: 24,
-                         halofit_brieden2023_sheetminussphere: 25,
-                         halofit_brieden2023_halocross: 26,
-                         halofit_brieden2023_filacross: 27,
-                         halofit_brieden2023_sheetcross: 28,
-                         halofit_brieden2023_halospherecross: 29,
-                         halofit_brieden2023_filaspherecross: 30,
-                         halofit_brieden2023_sheetspherecross: 31,
-                         halofit_brieden2023_cross_profilecusp: 32,
-                         halofit_brieden2023_cross_profileconc: 33,
-                         halofit_brieden2023_cross_nobias: 34,
-                         halofit_brieden2023_cross_nohalobias: 35,
-                         halofit_brieden2023_cross_tinkerhalobias: 36,
-                         halofit_brieden2023_cross_fnumasscutlow: 37,
-                         halofit_brieden2023_cross_fnumasscuthigh: 38,
-                         halofit_brieden2023_tweaked_thinweb: 39,
+                         halofit_brieden2025_halo: 17,
+                         halofit_brieden2025_fila: 18,
+                         halofit_brieden2025_sheet: 19,
+                         halofit_brieden2025_halosphere: 20,
+                         halofit_brieden2025_filasphere: 21,
+                         halofit_brieden2025_sheetsphere: 22,
+                         halofit_brieden2025_halominussphere: 23,
+                         halofit_brieden2025_filaminussphere: 24,
+                         halofit_brieden2025_sheetminussphere: 25,
+                         halofit_brieden2025_halocross: 26,
+                         halofit_brieden2025_filacross: 27,
+                         halofit_brieden2025_sheetcross: 28,
+                         halofit_brieden2025_halospherecross: 29,
+                         halofit_brieden2025_filaspherecross: 30,
+                         halofit_brieden2025_sheetspherecross: 31,
+                         halofit_brieden2025_cross_profilecusp: 32,
+                         halofit_brieden2025_cross_profileconc: 33,
+                         halofit_brieden2025_cross_nobias: 34,
+                         halofit_brieden2025_cross_nohalobias: 35,
+                         halofit_brieden2025_cross_tinkerhalobias: 36,
+                         halofit_brieden2025_cross_fnumasscutlow: 37,
+                         halofit_brieden2025_cross_fnumasscuthigh: 38,
+                         halofit_brieden2025_tweaked_thinweb: 39,
                          
                         }
 
@@ -137,8 +137,8 @@ class Halofit(NonLinearModel):
         :param HMCode_A_baryon: HMcode parameter A_baryon. Default 3.13. Used only in models mead2015 and mead2016 (and its alias mead).
         :param HMCode_eta_baryon: HMcode parameter eta_baryon. Default 0.603. Used only in mead2015 and mead2016 (and its alias mead).
         :param HMCode_logT_AGN: HMcode parameter logT_AGN. Default 7.8. Used only in model mead2020_feedback.
-        :param WHM_hmf: WHM halo mass function, 0 = Sheth-Tormen (baseline), 1 = Warren et al. (2006), 2 = Despali et al. (2016). brieden2023* models only.
-        :param WHM_thinweb: 1 = 'thin web' sheet/filament profiles instead of constant density. brieden2023* models only.
+        :param WHM_hmf: WHM halo mass function, 0 = Sheth-Tormen (baseline), 1 = Warren et al. (2006), 2 = Despali et al. (2016). brieden2025* models only.
+        :param WHM_thinweb: 1 = 'thin web' sheet/filament profiles instead of constant density. brieden2025* models only.
         """
         self.halofit_version = halofit_version
         self.HMCode_A_baryon = HMCode_A_baryon
